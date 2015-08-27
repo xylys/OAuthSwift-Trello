@@ -5,8 +5,13 @@
 //  Created by Dongri Jin on 6/21/14.
 //  Copyright (c) 2014 Dongri Jin. All rights reserved.
 //
+//  OAuthSwift-Trello
+//  Created by Lukas d'Hondt, Xylys on 8/27/15
 
 import Foundation
+#if os(iOS)
+    import UIKit
+#endif
 
 public class OAuthSwiftHTTPRequest: NSObject, NSURLConnectionDataDelegate {
     
@@ -71,7 +76,7 @@ public class OAuthSwiftHTTPRequest: NSObject, NSURLConnectionDataDelegate {
             var error: NSError?
             
             self.request = OAuthSwiftHTTPRequest.makeRequest(self.URL, method: self.HTTPMethod, headers: self.headers, parameters: self.parameters, dataEncoding: self.dataEncoding, encodeParameters: self.encodeParameters, error: &error, body: self.HTTPBodyMultipart, contentType: self.contentTypeMultipart)
-                
+            
             if ((error) != nil) {
                 println(error!.localizedDescription)
             }
@@ -145,7 +150,7 @@ public class OAuthSwiftHTTPRequest: NSObject, NSURLConnectionDataDelegate {
             return request
     }
     
-
+    
     public func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
         self.response = response as? NSHTTPURLResponse
         

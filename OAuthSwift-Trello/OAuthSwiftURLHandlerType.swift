@@ -5,8 +5,13 @@
 //  Created by phimage on 11/05/15.
 //  Copyright (c) 2015 Dongri Jin. All rights reserved.
 //
+//  OAuthSwift-Trello
+//  Created by Lukas d'Hondt, Xylys on 8/27/15
 
 import Foundation
+#if os(iOS)
+    import UIKit
+#endif
 
 @objc public protocol OAuthSwiftURLHandlerType {
     func handle(url: NSURL)
@@ -27,7 +32,7 @@ public class OAuthSwiftOpenURLExternally: OAuthSwiftURLHandlerType {
     @objc public func handle(url: NSURL) {
         #if os(iOS)
             UIApplication.sharedApplication().openURL(url)
-        #elseif os(OSX)
+            #elseif os(OSX)
             NSWorkspace.sharedWorkspace().openURL(url)
         #endif
     }
