@@ -28,9 +28,12 @@ func application(application: UIApplication, openURL url: NSURL, sourceApplicati
 }
 
 // In your networking class or wherever you need to get the oauth token
+//
+// Get your Trello api key and secret at: https://trello.com/1/appKey/generate
+
 let oauthswift = OAuth1Swift(
-    consumerKey:    "xxxxxxx",
-    consumerSecret: "xxxxxxx",
+    consumerKey:    "", // Your Trello api key
+    consumerSecret: "", // Your Trello api secret
     requestTokenUrl: "https://trello.com/1/OAuthGetRequestToken",
     authorizeUrl:    "https://trello.com/1/OAuthAuthorizeToken",
     accessTokenUrl:  "https://trello.com/1/OAuthGetAccessToken",
