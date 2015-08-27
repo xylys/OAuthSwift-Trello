@@ -2,7 +2,7 @@
 
 Swift based OAuth library for iOS and OSX.
 
-### Support OAuth1.0, OAuth2.0
+### Support OAuth1.0
 
 Trello
 
@@ -20,14 +20,14 @@ Trello
 ```swift
 // AppDelegate
 func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-if (url.host == "oauth-callback") {
-OAuth1Swift.handleOpenURL(url)
+    if (url.host == "oauth-callback") {
+        OAuth1Swift.handleOpenURL(url)
+    }
+
+    return true
 }
 
-return true
-}
-
-// OAuth1.0
+// In your networking class or wherever you need to get the oauth token
 let oauthswift = OAuth1Swift(
     consumerKey:    "xxxxxxx",
     consumerSecret: "xxxxxxx",
@@ -39,14 +39,16 @@ let oauthswift = OAuth1Swift(
     expiration: "" // How long your token will work: "1day" or "30days" or "never"
 )
 
+// Then call:
+
 oauthswift.authorizeWithCallbackURL(NSURL(string: "oauth-swift://oauth-callback/trello")!, success: { (credential, response) -> Void in
 
-println(credential.oauth_token)
-println(credential.oauth_token_secret)
+    println(credential.oauth_token)
+    println(credential.oauth_token_secret)
 
 }) { (error) -> Void in
 
-println("error")
+    println("error")
 
 }
 
